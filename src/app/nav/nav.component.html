@@ -11,7 +11,9 @@
     href="#"
     >تواصل</a
   >
-  <ul
+
+
+  <ul *ngIf="loggedIn()"
     style="
       letter-spacing: 1px;
       font-weight: bold;
@@ -30,7 +32,7 @@
         "
         class="nav-link"
         href="#"
-        >الرئيسية
+        routerLink="home" routerLinkActive="active" >الرئيسية
       </a>
     </li>
     <li class="nav-item">
@@ -43,7 +45,7 @@
         "
         class="nav-link"
         href="#"
-        >بحث</a
+        routerLink="members" routerLinkActive="active" >بحث</a
       >
     </li>
     <li class="nav-item">
@@ -56,7 +58,7 @@
         "
         class="nav-link"
         href="#"
-        >تواصل</a
+        routerLink="lists" routerLinkActive="active">تواصل</a
       >
     </li>
     <li class="nav-item">
@@ -69,7 +71,7 @@
         "
         class="nav-link"
         href="#"
-        >دردشة</a
+        routerLink="messages" routerLinkActive="active">دردشة</a
       >
     </li>
   </ul>
@@ -87,7 +89,7 @@
       data-bs-toggle="dropdown"
       aria-expanded="false"
     >
-      مرحبا بك
+      {{userName}} مرحبا بك
     </button>
     <ul class="dropdown-menu mt-2" aria-labelledby="dropdownMenuButton1">
       <li>
@@ -109,13 +111,13 @@
   >
     <div class="d-flex" style="justify-content: space-between">
       <input
-        class="form-control mr-sm-2"
+        class="form-control me-sm-2"
         type="text"
         placeholder="إسم المشترك"
         formControlName="email"
       />
       <input
-        class="form-control mr-sm-2"
+        class="form-control me-sm-2"
         type="password"
         placeholder="كلمة السر"
         formControlName="password"

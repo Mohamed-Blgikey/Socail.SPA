@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { HotToastService } from '@ngneat/hot-toast';
 import { AuthService } from '../_Services/auth.service';
 
 @Component({
@@ -9,13 +11,17 @@ import { AuthService } from '../_Services/auth.service';
 })
 export class NavComponent implements OnInit {
 
+  userName:string = '';
   loginForm:FormGroup = new FormGroup({
     email:new FormControl(null,[Validators.required,Validators.email]),
     password:new FormControl(null,[Validators.required])
   })
-  constructor(private auth:AuthService) { }
+  constructor(private auth:AuthService,private alert:HotToastService,private router:Router) { }
 
   ngOnInit(): void {
+    this.auth.user.subscribe(res=>{
+      this.userName = this.auth?.user['_value']?.fullName
+    })
   }
 
 
@@ -24,25 +30,30 @@ export class NavComponent implements OnInit {
     this.auth.login(form.value).subscribe(
     res=>{
       if (res.message == 'Success') {
-        console.log('تم تسجيل الدخول')
+        this.alert.success('تم تسجيل الدخول')
+        // console.log('تم تسجيل الدخول')
         localStorage.setItem('token',res.token)
+        this.auth.saveUser();
         form.reset();
+        this.router.navigate(['/members'])
       }else{
-        console.log('فشل تسجيل الدخول');
+        this.alert.error(res.message)
+        // console.log('فشل تسجيل الدخول');
       }
     }
     )
   }
 
   loggedIn():boolean{
-    const token = localStorage.getItem('token');
-    return !! token;
+    if (this.auth.loggedIn() == false) {
+    localStorage.removeItem('token')
+    }
+    return this.auth.loggedIn()
   }
 
-  loggedOut():void{
+  loggedOut(){
     localStorage.removeItem('token');
-    console.log('تم تسجيل الخروج');
-
+    this.router.navigate(['/']);
   }
 
 }
