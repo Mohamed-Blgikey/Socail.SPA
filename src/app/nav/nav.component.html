@@ -1,0 +1,133 @@
+<nav class="p-2 rtl navbar navbar-expand-md navbar-dark bg-dark">
+  <a
+    style="
+      margin-top: -10px;
+      color: pink;
+      font-family: ToyorAljanah;
+      font-size: 2.25rem;
+      font-weight: bolder;
+    "
+    class="navbar-brand"
+    href="#"
+    >تواصل</a
+  >
+  <ul
+    style="
+      letter-spacing: 1px;
+      font-weight: bold;
+      font-family: 'JF Flat';
+      font-size: 1.2rem;
+    "
+    class="navbar-nav mr-auto"
+  >
+    <li class="nav-item">
+      <a
+        style="
+          letter-spacing: 1px;
+          font-weight: bold;
+          font-family: 'JF Flat';
+          font-size: 1.2rem;
+        "
+        class="nav-link"
+        href="#"
+        >الرئيسية
+      </a>
+    </li>
+    <li class="nav-item">
+      <a
+        style="
+          letter-spacing: 1px;
+          font-weight: bold;
+          font-family: 'JF Flat';
+          font-size: 1.2rem;
+        "
+        class="nav-link"
+        href="#"
+        >بحث</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        style="
+          letter-spacing: 1px;
+          font-weight: bold;
+          font-family: 'JF Flat';
+          font-size: 1.2rem;
+        "
+        class="nav-link"
+        href="#"
+        >تواصل</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        style="
+          letter-spacing: 1px;
+          font-weight: bold;
+          font-family: 'JF Flat';
+          font-size: 1.2rem;
+        "
+        class="nav-link"
+        href="#"
+        >دردشة</a
+      >
+    </li>
+  </ul>
+  <div class="dropdown me-auto" *ngIf="loggedIn()">
+    <button
+      style="
+        letter-spacing: 1px;
+        font-weight: bold;
+        font-family: 'JF Flat';
+        font-size: 1.2rem;
+      "
+      class="btn btn-secondary dropdown-toggle"
+      type="button"
+      id="dropdownMenuButton1"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+    >
+      مرحبا بك
+    </button>
+    <ul class="dropdown-menu mt-2" aria-labelledby="dropdownMenuButton1">
+      <li>
+        <a style="cursor: pointer;" class="dropdown-item"
+          ><i class="fa fa-user" aria-hidden="true"></i> ملفي الشخصي</a
+        >
+      </li>
+      <li>
+        <a style="cursor: pointer;" class="dropdown-item" (click)="loggedOut()"
+          ><i class="fa fa-sign-out"></i> تسجيل الخروج</a
+        >
+      </li>
+    </ul>
+  </div>
+  <form *ngIf="!loggedIn()"
+    [formGroup]="loginForm"
+    (ngSubmit)="login(loginForm)"
+    class="me-auto my-2 my-lg-0"
+  >
+    <div class="d-flex" style="justify-content: space-between">
+      <input
+        class="form-control mr-sm-2"
+        type="text"
+        placeholder="إسم المشترك"
+        formControlName="email"
+      />
+      <input
+        class="form-control mr-sm-2"
+        type="password"
+        placeholder="كلمة السر"
+        formControlName="password"
+      />
+      <button
+        [disabled]="loginForm.invalid"
+        style="font-weight: bold; font-family: 'JF Flat'; font-size: 1rem"
+        class="btn btn-secondary my-2 my-sm-0"
+        type="submit"
+      >
+        تفضل بالدخول
+      </button>
+    </div>
+  </form>
+</nav>
