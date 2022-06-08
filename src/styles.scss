@@ -35,19 +35,11 @@
 .ltr {
   direction: ltr;
 }
-.nav-link:hover,
-.nav-link:focus {
-  text-decoration: none;
-  color: pink !important;
+
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid pink; /* pink */
 }
 
-.nav-link {
-  color: white !important;
+.ng-invalid:not(form)  {
+  border-left: 5px solid #a94442; /* red */
 }
-
-.btn-secondary:hover {
-  text-decoration: none;
-  color: black !important;
-  background: pink !important;
-}
-

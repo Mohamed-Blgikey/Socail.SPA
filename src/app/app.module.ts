@@ -8,11 +8,19 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { HotToastModule } from '@ngneat/hot-toast';
-import { MemberListComponent } from './member-list/member-list.component';
+import { MemberListComponent } from './members/member-list/member-list.component';
 import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
 import { AuthGuard } from './_guard/auth.guard';
+import { AuthService } from './_Services/auth.service';
+import { HttpService } from './_Services/http.service';
+import { MemberCardComponent } from './members/member-card/member-card.component';
+import { MemberDetailsComponent } from './members/member-details/member-details.component';
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 
+export function tokenGetter(){
+  return localStorage.getItem('token')
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,16 +29,19 @@ import { AuthGuard } from './_guard/auth.guard';
     RegisterComponent,
     MemberListComponent,
     ListsComponent,
-    MessagesComponent
+    MessagesComponent,
+    MemberCardComponent,
+    MemberDetailsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    HotToastModule.forRoot()
+    HotToastModule.forRoot(),
+    NgxGalleryModule
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard,AuthService,HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
