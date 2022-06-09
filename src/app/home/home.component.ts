@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../_Services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -8,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 
   registerMode:boolean = false;
-  constructor() { }
+  constructor(private auth:AuthService,private router:Router) { }
 
   ngOnInit(): void {
+    if (this.auth.loggedIn()) {
+      this.router.navigate(['/members'])
+    }
   }
 
   registerToggel(){

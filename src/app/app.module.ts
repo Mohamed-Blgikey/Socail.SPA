@@ -4,7 +4,7 @@ import {HttpClientModule} from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { HotToastModule } from '@ngneat/hot-toast';
@@ -17,6 +17,7 @@ import { HttpService } from './_Services/http.service';
 import { MemberCardComponent } from './members/member-card/member-card.component';
 import { MemberDetailsComponent } from './members/member-details/member-details.component';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
 
 export function tokenGetter(){
   return localStorage.getItem('token')
@@ -31,7 +32,8 @@ export function tokenGetter(){
     ListsComponent,
     MessagesComponent,
     MemberCardComponent,
-    MemberDetailsComponent
+    MemberDetailsComponent,
+    MemberEditComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +41,8 @@ export function tokenGetter(){
     HttpClientModule,
     ReactiveFormsModule,
     HotToastModule.forRoot(),
-    NgxGalleryModule
+    NgxGalleryModule,
+    FormsModule
   ],
   providers: [AuthGuard,AuthService,HttpService],
   bootstrap: [AppComponent]

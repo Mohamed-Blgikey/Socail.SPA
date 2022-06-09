@@ -11,7 +11,11 @@ export class AuthService {
 
   jwtHelper = new JwtHelperService();
   user = new BehaviorSubject(null);
-  constructor(private http :HttpClient) { }
+  constructor(private http :HttpClient) {
+    if (localStorage.getItem('token') != null) {
+      this.saveUser();
+    }
+   }
 
   login(obj:any):Observable<any>{
     return this.http.post(`${environment.baseUrl}Login`,obj);
