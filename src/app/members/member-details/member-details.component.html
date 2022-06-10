@@ -26,6 +26,7 @@
           <div class="btn-group d-flex">
             <button class="btn btn-primary w-100">Like</button>
             <button class="btn btn-success w-100">Message</button>
+
           </div>
         </div>
       </div>
@@ -52,9 +53,11 @@
         </div>
         <div class="tab-pane fade" id="nav-photo" role="tabpanel" aria-labelledby="nav-photo-tab">
           <div class="mt-3">
-            <div class="row">
-              <div class="col-sm-3" *ngFor="let photo of photos">
-                <img [src]="photo.url" alt="">
+            <div class="row" style="justify-content: center; overflow-y:auto ; overflow-x: hidden; height: 500px;">
+              <div class="col-sm-8 mb-3" *ngFor="let photo of photos">
+                <div style="overflow: hidden;">
+                  <img [src]="photo.url" alt="">
+                </div>
               </div>
             </div>
             <!-- <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery> -->

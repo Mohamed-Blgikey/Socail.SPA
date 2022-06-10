@@ -4,6 +4,14 @@ export const UserApi = {
   GetUserPhotos:"GetUserPhotos/",
 
 
-  EditUser:"EditUser"
+  AddPhoto:"AddPhoto",
+
+
+  EditUser:"EditUser",
+  SetMain:"SetMain",
+
+
+
+  DeletePhoto:"DeletePhoto"
 
 }

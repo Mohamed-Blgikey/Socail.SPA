@@ -1,3 +1,5 @@
+import { Photo } from "./photo";
+
 export interface User {
   id:string,
   fullName:string;
@@ -11,4 +13,5 @@ export interface User {
   introduction?:string;
   lookingFor?:string
   interests?:string
+  photos?:Photo[];
 }

@@ -77,7 +77,7 @@ export class MemberDetailsComponent implements OnInit {
   private getUser(id:string){
     this.http.Get(UserApi.GetUser+id).subscribe(res=>{
       this.user = res
-      // console.log(this.user);
+      console.log(this.user);
     },
     err=>{this.alert.error(err)}
     )
