@@ -2,23 +2,69 @@
   <hr>
 
   <div class="form-group">
-    <input formControlName="email" type="email" class="form-control" placeholder="البريد ">
+    <input [ngClass]="{'is-invalid': registerForm.get('email')?.errors && registerForm.get('email')?.touched}" formControlName="email" type="email" class="form-control" placeholder="البريد ">
+    <div *ngIf="registerForm.get('email')?.hasError('required') && registerForm.get('email')?.touched" class="text-danger"> أدخل الابميل</div>
+    <div *ngIf="registerForm.get('email')?.hasError('email') && registerForm.get('email')?.touched" class="text-danger"> غير صالح الابميل</div>
+
   </div>
   <div class="form-group">
-    <input formControlName="password" type="password" class="form-control" placeholder="كلمة السر">
+    <input [ngClass]="{'is-invalid': registerForm.get('password')?.errors && registerForm.get('password')?.touched}" formControlName="password" type="password" class="form-control" placeholder="كلمة السر">
+    <div *ngIf="registerForm.get('password')?.hasError('required') && registerForm.get('password')?.touched" class="text-danger"> أدخل كلمة السر</div>
   </div>
 
   <div class="form-group">
-    <input formControlName="firstName" type="text" class="form-control" placeholder="الاسم الاول">
+    <input [ngClass]="{'is-invalid': registerForm.get('confirmPassword')?.errors && registerForm.get('confirmPassword')?.touched|| registerForm.errors?.['passwordsDontMatch']}" formControlName="confirmPassword" type="password" class="form-control" placeholder="تاكيد كلمة السر">
+    <div *ngIf="registerForm.get('confirmPassword')?.hasError('required') && registerForm.get('confirmPassword')?.touched" class="text-danger"> أدخل تاكيد كلمة السر</div>
+    <div *ngIf="registerForm.errors?.['passwordsDontMatch']" class="text-danger"> كلمات السر غير متطابقه</div>
+
   </div>
 
   <div class="form-group">
-    <input formControlName="lastName" type="text" class="form-control" placeholder="الاسم الاخير">
+    <input [ngClass]="{'is-invalid': registerForm.get('firstName')?.errors && registerForm.get('firstName')?.touched}" formControlName="firstName" type="text" class="form-control" placeholder="الاسم الاول">
+    <div *ngIf="registerForm.get('firstName')?.hasError('required') && registerForm.get('firstName')?.touched" class="text-danger"> أدخل الاسم الاول</div>
+
+  </div>
+
+  <div class="form-group">
+    <input [ngClass]="{'is-invalid': registerForm.get('lastName')?.errors && registerForm.get('lastName')?.touched}" formControlName="lastName" type="text" class="form-control" placeholder="الاسم الاخير">
+    <div *ngIf="registerForm.get('lastName')?.hasError('required') && registerForm.get('lastName')?.touched" class="text-danger"> أدخل الاسم الاخير</div>
+
+  </div>
+
+  <div class="form-group">
+    <input [ngClass]="{'is-invalid': registerForm.get('city')?.errors && registerForm.get('city')?.touched}" class="form-control"
+      placeholder="المدينة" formControlName="city">
+    <div class="invalid-feedback" *ngIf="registerForm.get('city')?.touched && registerForm.get('city')?.hasError('required')">أدخل إسم مدينتك</div>
+  </div>
+
+  <div class="form-group">
+    <input [ngClass]="{'is-invalid': registerForm.get('country')?.errors && registerForm.get('country')?.touched}" class="form-control"
+      placeholder="البلد" formControlName="country">
+    <div class="invalid-feedback" *ngIf="registerForm.get('country')?.touched && registerForm.get('country')?.hasError('required')">أدخل إسم بلدك</div>
+  </div>
+
+  <div class="form-group">
+    <input [ngClass]="{'is-invalid': registerForm.get('dateOfBirth')?.errors && registerForm.get('dateOfBirth')?.touched}" placeholder="تاريخ الميلاد.." formControlName="dateOfBirth" type="date" class="form-control">
+    <div class="invalid-feedback" *ngIf="registerForm.get('dateOfBirth')?.touched && registerForm.get('dateOfBirth')?.hasError('required')">أدخل تاريخ الميلاد </div>
+  </div>
+
+
+
+  <div class="form-group">
+    <label class="control-label" style="margin-right:10px">أنا </label>
+    <label class="radio-inline ml-2 ">
+      <input class="me-1" type="radio" value="1" formControlName="gender">رجل
+    </label>
+    <label class="radio-inline ml-3">
+      <input class="me-1" type="radio" value="0" formControlName="gender">إمرأة
+    </label>
   </div>
 
   <div class="form-group text-center mt-5">
-    <button  style="font-weight:bold;font-family:'JF Flat';" class="btn btn-secondary btn-lg" type="submit">إشتراك</button>
+    <button [disabled]="registerForm.invalid" style="font-weight:bold;font-family:'JF Flat';" class="btn btn-secondary btn-lg" type="submit">إشتراك</button>
     <button (click)="cancel()" style="font-weight:bold;font-family:'JF Flat';" class="btn btn-secondary btn-lg me-2" type="button">ليس الأن</button>
   </div>
+
+
 
 </form>
