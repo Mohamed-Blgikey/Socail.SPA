@@ -17,7 +17,6 @@ export class MemberDetailsComponent implements OnInit {
 
   user:User|undefined;
   imgPrefix:string = environment.PhotoUrl;
-  photos:Photo[] = [];
   galleryOptions: NgxGalleryOptions[] = [];
   galleryImages: NgxGalleryImage[] = [];
 
@@ -26,7 +25,6 @@ export class MemberDetailsComponent implements OnInit {
   ngOnInit(): void {
 
     this.getUser(this.route.snapshot.params['id']);
-    this.getUserPhotos(this.route.snapshot.params['id']);
 
     // this.galleryOptions = [
     //   {
@@ -78,15 +76,6 @@ export class MemberDetailsComponent implements OnInit {
     this.http.Get(UserApi.GetUser+id).subscribe(res=>{
       this.user = res
       console.log(this.user);
-    },
-    err=>{this.alert.error(err)}
-    )
-  }
-
-  private getUserPhotos(id:string){
-    this.http.Get(UserApi.GetUserPhotos+id).subscribe(res=>{
-      // console.log(res);
-      this.photos = res;
     },
     err=>{this.alert.error(err)}
     )

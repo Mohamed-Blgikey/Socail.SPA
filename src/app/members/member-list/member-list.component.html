@@ -1,7 +1,32 @@
+<div class="form-group px-2 py-4">
+  <select (change)="changeusers($event)" class="form-control ml-1" style="width: 130px" id="gender" name="gender">
+    <option [selected]="GenderFilter == 1" value="1">
+      men
+    </option>
+    <option [selected]="GenderFilter == 0" value="0">
+      women
+    </option>
+  </select>
+</div>
 <div class="container rtl">
   <div class="row">
-    <div *ngFor="let user of users" class="col-lg-2 col-md-3 col-sm-6">
+    <div *ngFor="let user of users|  paginate: { id: 'foo', itemsPerPage: itemPerPage, currentPage: p, totalItems: totalItems }" class="col-lg-2 col-md-3 col-sm-6">
       <app-member-card [user]="user"></app-member-card>
     </div>
   </div>
 </div>
+
+
+<!--
+<div class="py-2 text-center text-success">
+  <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+</div> -->
+
+<pagination-controls  id="foo"
+                      (pageChange)="p = $event;pageChanged()"
+                      previousLabel="Previous"
+                      nextLabel="Next"
+                      screenReaderPaginationLabel="Pagination"
+                      screenReaderPageLabel="page"
+                      screenReaderCurrentLabel="You're on page">
+</pagination-controls>

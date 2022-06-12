@@ -62,7 +62,7 @@ export class RegisterComponent implements OnInit {
     this.auth.register(form.value).subscribe((res) => {
       if (res.message == 'Success') {
         form.reset();
-        console.log('تم الإشتراك');
+      console.log('تم الإشتراك');
       } else {
         console.log(res.message);
       }
