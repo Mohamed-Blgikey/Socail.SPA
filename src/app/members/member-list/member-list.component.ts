@@ -17,27 +17,28 @@ export class MemberListComponent implements OnInit {
   totalItems:number = 0;
   itemPerPage:number = 0;
   GenderFilter:number = 0;
+  likers:boolean = false;
+  likees:boolean = false;
 
   constructor(private http: HttpService, private alert: HotToastService,private auth:AuthService) {}
 
 
   ngOnInit(): void {
-    this.GenderFilter = this.auth.user['_value'].gender == 1? 0:1;
-   this.loadUsers(1,6,this.GenderFilter);
+    this.loadUsers(1,6);
   }
 
   pageChanged(){
-    this.loadUsers(this.p,6,this.GenderFilter)
+    this.loadUsers(this.p,6)
 
     }
 
     changeusers(a:any){
       this.GenderFilter = a.target.value;
-      this.loadUsers(this.p,6,this.GenderFilter)
+      this.loadUsers(this.p,6)
     }
 
-  private loadUsers(PageNumber?:number,PageSize:number = 10,Gender?:Number){
-      this.http.Get(`${UserApi.GetUsers}?PageNumber=${PageNumber}&PageSize=${PageSize}&Gender=${Gender}`).subscribe(
+  private loadUsers(PageNumber?:number,PageSize:number = 10){
+      this.http.Get(`${UserApi.GetUsers}?PageNumber=${PageNumber}&PageSize=${PageSize}&Gender=${this.GenderFilter}&Likers=${this.likers}&Likees=${this.likees}`).subscribe(
         (res) => {
           this.users = res.data;
           this.totalItems = res.totalItems

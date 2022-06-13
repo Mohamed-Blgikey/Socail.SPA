@@ -1,1 +1,45 @@
-<p>lists works!</p>
+<div class="container mt-1">
+  <div class="row">
+    <div class="col-md-11 text-center mt-3">
+      <h3 style="font-family:'Droid-Arabic-Kufi';margin-right:145px">{{likees ? 'من أعجبوا بي' : 'من
+        أعجبت بهم'}} : {{users.length}}</h3>
+    </div>
+    <div class="col-md-1 float-left">
+      <div class="btn-group-vertical">
+        <button type="button"  btnRadio="Likers" (click)="loadlikers(true);"  class="btn mb-1 ajs-button btn-up"
+          [ngStyle]="{'background':likers?'red' : 'black'}">أعجبهم</button>
+        <button type="button"  (click)="loadlikers(false);" btnRadio="Likees"  class="btn ajs-button btn-down"
+          [ngStyle]="{'background':likees?'red' : 'black'}">يعجبونني</button>
+      </div>
+    </div>
+  </div>
+
+  <select class="form-control w-25 mx-auto text-center my-5" (change)="changeSize($event)">
+    <option value="2">2</option>
+    <option value="4">4</option>
+    <option value="6">6</option>
+    <option value="8">8</option>
+  </select>
+
+  <div class="container rtl">
+    <div class="row">
+      <div *ngFor="let user of users|  paginate: { id: 'foo', itemsPerPage: itemPerPage, currentPage: p, totalItems: totalItems }" class="col-lg-2 col-md-3 col-sm-6">
+        <app-member-card [user]="user"></app-member-card>
+      </div>
+    </div>
+  </div>
+
+
+  <!--
+  <div class="py-2 text-center text-success">
+    <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+  </div> -->
+
+  <pagination-controls  id="foo"
+                        (pageChange)="p = $event;pageChanged()"
+                        previousLabel="Previous"
+                        nextLabel="Next"
+                        screenReaderPaginationLabel="Pagination"
+                        screenReaderPageLabel="page"
+                        screenReaderCurrentLabel="You're on page">
+  </pagination-controls>

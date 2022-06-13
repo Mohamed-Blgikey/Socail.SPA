@@ -5,6 +5,7 @@ export const UserApi = {
 
 
   AddPhoto:"AddPhoto",
+  MakeLike:"MakeLike",
 
 
   EditUser:"EditUser",

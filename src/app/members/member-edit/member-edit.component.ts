@@ -18,7 +18,6 @@ export class MemberEditComponent implements OnInit {
   @ViewChild('editForm') editForm:FormGroup|undefined;
 
   user:User|undefined;
-  photos:Photo[] = [];
   imgPrefix = environment.PhotoUrl;
 
   editUserForm :FormGroup = new FormGroup({
@@ -37,6 +36,8 @@ export class MemberEditComponent implements OnInit {
 
     this.http.Get(UserApi.GetUser+this.auth.user['_value'].nameid).subscribe(res=>{
       this.user = res;
+      console.log(this.user);
+
       this.editUserForm.controls['id'].setValue(this.user?.id)
       this.editUserForm.controls['country'].setValue(this.user?.country)
       this.editUserForm.controls['city'].setValue(this.user?.city)
@@ -45,10 +46,7 @@ export class MemberEditComponent implements OnInit {
       this.editUserForm.controls['interests'].setValue(this.user?.interests)
       this.editUserForm.controls['lookingFor'].setValue(this.user?.lookingFor)
     })
-    this.http.Get(UserApi.GetUserPhotos+this.auth.user['_value'].nameid)
-    .subscribe(res=>{
-      this.photos = res
-    })
+
   }
 
   Edit(editUserForm:FormGroup){

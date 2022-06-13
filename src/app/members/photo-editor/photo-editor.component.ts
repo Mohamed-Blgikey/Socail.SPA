@@ -12,7 +12,7 @@ import { HttpService } from 'src/app/_Services/http.service';
 })
 export class PhotoEditorComponent implements OnInit {
 
-  @Input() photos:Photo[] = [];
+  @Input() photos:Photo[]|any = [];
   f:FormGroup = new FormGroup({
     file:new FormControl(null, [Validators.required])
   })
