@@ -20,6 +20,8 @@ import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { MemberMessageComponent } from './members/member-message/member-message.component';
+import { MemberDetailResolver } from './_resolver/member-details.resolver';
 export function tokenGetter(){
   return localStorage.getItem('token')
 }
@@ -36,6 +38,7 @@ export function tokenGetter(){
     MemberDetailsComponent,
     MemberEditComponent,
     PhotoEditorComponent,
+    MemberMessageComponent,
 
   ],
   imports: [
@@ -47,7 +50,7 @@ export function tokenGetter(){
     NgxGalleryModule,
     NgxPaginationModule
   ],
-  providers: [AuthGuard,AuthService,HttpService],
+  providers: [AuthGuard,AuthService,HttpService,MemberDetailResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -7,6 +7,7 @@ import { MemberEditComponent } from './members/member-edit/member-edit.component
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { MessagesComponent } from './messages/messages.component';
 import { AuthGuard } from './_guard/auth.guard';
+import { MemberDetailResolver } from './_resolver/member-details.resolver';
 
 const routes: Routes = [
   {
@@ -25,8 +26,10 @@ const routes: Routes = [
         component:MemberListComponent,
       },
       {
-        path:'members/:id',
-        component:MemberDetailsComponent,
+        path:'members/:id/:loc',
+        component:MemberDetailsComponent,resolve:{
+          user:MemberDetailResolver
+      }
       },
       {
         path:'member/edit',

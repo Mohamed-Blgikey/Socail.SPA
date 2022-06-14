@@ -24,6 +24,7 @@ export class MemberListComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.GenderFilter = this.auth.user['_value'].gender == 1?0:1;
     this.loadUsers(1,6);
   }
 

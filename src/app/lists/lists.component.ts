@@ -29,9 +29,9 @@ export class ListsComponent implements OnInit {
     this.PageSize = size.target.value;
     this.loadUsers();
   }
+
   pageChanged(){
     this.loadUsers();
-
     }
 
   loadlikers(a:boolean){

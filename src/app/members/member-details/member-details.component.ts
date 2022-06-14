@@ -15,17 +15,25 @@ import { environment } from 'src/environments/environment';
 })
 export class MemberDetailsComponent implements OnInit {
 
-  user:User|undefined;
+  active = 'home'
+  user:User|any;
   imgPrefix:string = environment.PhotoUrl;
   galleryOptions: NgxGalleryOptions[] = [];
   galleryImages: NgxGalleryImage[] = [];
 
-  constructor(private http:HttpService,private alert:HotToastService,private route:ActivatedRoute) { }
+  constructor(private route:ActivatedRoute) { }
 
   ngOnInit(): void {
 
-    this.getUser(this.route.snapshot.params['id']);
+    // console.log();
+    this.active = this.route.snapshot.params['loc'];
 
+
+    this.route.data.subscribe(data => {
+      this.user = data['user'];
+      // console.log(data['user']);
+
+    });
     // this.galleryOptions = [
     //   {
     //     width: '600px',
@@ -72,13 +80,6 @@ export class MemberDetailsComponent implements OnInit {
   }
 
 
-  private getUser(id:string){
-    this.http.Get(UserApi.GetUser+id).subscribe(res=>{
-      this.user = res
-      console.log(this.user);
-    },
-    err=>{this.alert.error(err)}
-    )
-  }
+
 
 }
