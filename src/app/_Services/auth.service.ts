@@ -40,4 +40,16 @@ export class AuthService {
       return false;
     }
   }
+
+  roleMatch(allRoles:string[]):boolean{
+    let isMatch = false;
+    const userRoles = this.user['_value'].roles as Array<string>;
+    allRoles.forEach(e=>{
+       if (userRoles.includes(e)) {
+        isMatch =true;
+        return ;
+       }
+    });
+    return isMatch;
+  }
 }

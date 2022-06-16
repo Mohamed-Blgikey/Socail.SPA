@@ -15,7 +15,20 @@ export class AuthGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (this.auth.loggedIn()) {
+
+      const roles = route.firstChild?.data['roles'] as Array<string>;
+      // console.log(roles);
+      if (roles) {
+        const match = this.auth.roleMatch(roles);
+        if (match) {
+          return true;
+        }else{
+          this.alert.error("غير مسموح لك بالدخول");
+          this.router.navigate(["/members"])
+          return false;
+        }
+      }
+      if (this.auth.loggedIn()) {
       return true;
     }
 

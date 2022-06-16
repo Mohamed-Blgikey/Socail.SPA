@@ -1,0 +1,51 @@
+<div class="row">
+  <table class="table">
+    <tr>
+      <th style="width: 10%"># </th>
+      <th style="width: 30%">إسم المستخدم</th>
+      <th style="width: 40%">الأدوار</th>
+      <th style="width: 20%"></th>
+    </tr>
+    <tr *ngFor="let user of users;let i = index">
+      <td>{{i}}</td>
+      <td>{{user.fullName}}</td>
+      <td>{{user.roles}}</td>
+      <td><button type="button" (click)="getUser(user)" data-bs-toggle="modal" data-bs-target="#Edit" class="btn btn-info small">تعديل الأدوار</button></td>
+    </tr>
+  </table>
+  </div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="Edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div dir="rtl" class="modal-header ajs-header">
+        <h4 class="modal-title page-header ">تعديل الأدوار الخاصة بـ {{user?.fullName}}</h4>
+      </div>
+
+
+
+        <div class="modal-body rtl">
+          <form #rolesForm="ngForm" id="rolesForm">
+
+            <div  class="form-check" *ngFor="let role of roles">
+              <input
+                class="form-check-input ms-2 Font-Kufi "
+                type="checkbox" value="role.value"
+                [checked]="role.checked"
+                (change)="role.checked = !role.checked"
+                >
+              <label class="me-4 ajs-content">{{role.name}}</label>
+            </div>
+          </form>
+        </div>
+      <div dir="rtl" class="modal-footer text-center">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn ajs-button ajs-header ml-5 " (click)="editUser()"  form="rolesForm">إدخال</button>
+      </div>
+    </div>
+  </div>
+</div>

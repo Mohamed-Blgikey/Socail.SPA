@@ -4,7 +4,7 @@ import {HttpClientModule} from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { HotToastModule } from '@ngneat/hot-toast';
@@ -22,6 +22,11 @@ import { PhotoEditorComponent } from './members/photo-editor/photo-editor.compon
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MemberMessageComponent } from './members/member-message/member-message.component';
 import { MemberDetailResolver } from './_resolver/member-details.resolver';
+import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
+import { HasRoleDirective } from './_directive/has-role.directive';
+import { UserMangementComponent } from './admin/user-mangement/user-mangement.component';
+import { PhotoMangementComponent } from './admin/photo-mangement/photo-mangement.component';
+import { RolesModalComponent } from './admin/roles-modal/roles-modal.component';
 export function tokenGetter(){
   return localStorage.getItem('token')
 }
@@ -39,8 +44,12 @@ export function tokenGetter(){
     MemberEditComponent,
     PhotoEditorComponent,
     MemberMessageComponent,
-
+    AdminPanelComponent,
+    HasRoleDirective,
+    UserMangementComponent,
+    PhotoMangementComponent,
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -48,9 +57,13 @@ export function tokenGetter(){
     ReactiveFormsModule,
     HotToastModule.forRoot(),
     NgxGalleryModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    FormsModule
   ],
   providers: [AuthGuard,AuthService,HttpService,MemberDetailResolver],
+  entryComponents:[
+    RolesModalComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

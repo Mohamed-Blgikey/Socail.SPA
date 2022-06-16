@@ -1,0 +1,24 @@
+<div class="container mt-3">
+  <h3 class="Font-Kufi">لوحة الإدارة</h3>
+  <div class="tab-panel">
+    <nav>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">إدارة المستخدمين</button>
+        <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">إدارة الصور</button>
+      </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+        <div class="container">
+          <app-user-mangement></app-user-mangement>
+      </div>
+      </div>
+      <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+
+        <app-photo-mangement></app-photo-mangement>
+      </div>
+    </div>
+
+
+  </div>
+</div>

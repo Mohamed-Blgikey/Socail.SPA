@@ -8,11 +8,8 @@
       font-weight: bolder;
     "
     class="navbar-brand"
-    href="#"
     >تواصل</a
   >
-
-
   <ul *ngIf="loggedIn()"
     style="
       letter-spacing: 1px;
@@ -31,7 +28,6 @@
           font-size: 1.2rem;
         "
         class="nav-link"
-        href="#"
         routerLink="home" routerLinkActive="active" >الرئيسية
       </a>
     </li>
@@ -44,7 +40,6 @@
           font-size: 1.2rem;
         "
         class="nav-link"
-        href="#"
         routerLink="members" routerLinkActive="active" >بحث</a
       >
     </li>
@@ -57,11 +52,10 @@
           font-size: 1.2rem;
         "
         class="nav-link"
-        href="#"
         routerLink="lists" routerLinkActive="active">تواصل</a
       >
     </li>
-    <li class="nav-item">
+    <li  class="nav-item">
       <a
         style="
           letter-spacing: 1px;
@@ -70,8 +64,20 @@
           font-size: 1.2rem;
         "
         class="nav-link"
-        href="#"
         routerLink="messages" routerLinkActive="active">دردشة</a
+      >
+    </li>
+
+    <li *hasRole="['Admin','Modirator']" class="nav-item">
+      <a
+        style="
+          letter-spacing: 1px;
+          font-weight: bold;
+          font-family: 'JF Flat';
+          font-size: 1.2rem;
+        "
+        class="nav-link"
+        routerLink="admin" routerLinkActive="active">لوحه الاداره</a
       >
     </li>
   </ul>

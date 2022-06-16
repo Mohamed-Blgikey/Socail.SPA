@@ -14,4 +14,5 @@ export interface User {
   lookingFor?:string
   interests?:string
   photos?:Photo[];
+  roles?:string[];
 }
