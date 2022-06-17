@@ -5,6 +5,7 @@ export const UserApi = {
   GetMessage:"GetMessage/",
   GetMessages:"GetMessages/",
   GetConversation:"GetConversation/",
+  GetUsersExceptAdmin:"GetUsersExceptAdmin",
 
   AddPhoto:"AddPhoto",
   MakeLike:"MakeLike",

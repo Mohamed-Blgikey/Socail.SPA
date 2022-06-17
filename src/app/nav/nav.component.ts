@@ -16,7 +16,7 @@ export class NavComponent implements OnInit {
     email:new FormControl(null,[Validators.required,Validators.email]),
     password:new FormControl(null,[Validators.required])
   })
-  constructor(private auth:AuthService,private alert:HotToastService,private router:Router) { }
+  constructor(public auth:AuthService,private alert:HotToastService,private router:Router) { }
 
   ngOnInit(): void {
     this.auth.user.subscribe(res=>{
@@ -56,4 +56,11 @@ export class NavComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
+  ar(){
+this.auth.laguage.next('ar')
+  }
+  en(){
+    this.auth.laguage.next('en')
+
+  }
 }

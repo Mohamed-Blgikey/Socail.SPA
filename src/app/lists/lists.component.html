@@ -22,7 +22,7 @@
     <option selected value="10">10</option>
   </select>
 
-  <div class="container rtl">
+  <div class="container ">
     <div class="row">
       <div *ngFor="let user of users|  paginate: { id: 'foo', itemsPerPage: itemPerPage, currentPage: p, totalItems: totalItems }" class="col-lg-2 col-md-3 col-sm-6">
         <app-member-card [user]="user"></app-member-card>

@@ -27,6 +27,8 @@ import { HasRoleDirective } from './_directive/has-role.directive';
 import { UserMangementComponent } from './admin/user-mangement/user-mangement.component';
 import { PhotoMangementComponent } from './admin/photo-mangement/photo-mangement.component';
 import { RolesModalComponent } from './admin/roles-modal/roles-modal.component';
+import { LangDirective } from './_directive/lang.directive';
+import { AllMembersReportComponent } from './_reports/all-members-report/all-members-report.component';
 export function tokenGetter(){
   return localStorage.getItem('token')
 }
@@ -48,6 +50,8 @@ export function tokenGetter(){
     HasRoleDirective,
     UserMangementComponent,
     PhotoMangementComponent,
+    LangDirective,
+    AllMembersReportComponent,
   ],
 
   imports: [

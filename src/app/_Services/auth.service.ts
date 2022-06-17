@@ -9,12 +9,29 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthService {
 
+  _lang = 'ar';
+  dir = 'rtl'
+
   jwtHelper = new JwtHelperService();
+
   user = new BehaviorSubject(null);
+  laguage = new BehaviorSubject<string>('ar');
+  lang = this.laguage.asObservable();
+
   constructor(private http :HttpClient) {
     if (localStorage.getItem('token') != null) {
       this.saveUser();
     }
+    this.lang.subscribe(res=>{
+      // console.log(res);
+      if (res == 'en') {
+        this._lang = 'en'
+        this.dir = 'ltr'
+      }else{
+        this._lang = 'ar';
+        this.dir = 'rtl'
+      }
+    })
    }
 
   login(obj:any):Observable<any>{
